@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,14 +49,32 @@ namespace conexionBaseDeDatosCChar2.Modelo
             string[] parametros=new string[4];
             string[] vector2;
             int i = 0;
-            StreamReader sr = new StreamReader(ruta);
-            while(!sr.EndOfStream)
+            try
             {
-                vector2=sr.ReadLine().Split('=');
-                parametros[i] = vector2[1];
-                i++;
+                StreamReader sr = new StreamReader(ruta);
+
+                while (!sr.EndOfStream)
+                {
+                    vector2 = sr.ReadLine().Split('=');
+                    parametros[i] = vector2[1];
+                    i++;
+                }
+                sr.Close();
+                //Excepciones
+            }catch(ArgumentException au)
+            {
+                Console.WriteLine("No es valido los argumentos que ofrece Error: "+au.Message);
+            }catch(FileNotFoundException fn)
+            {
+                Console.WriteLine("El archivo que intenta leer no existe Error: " + fn.Message);
             }
-            sr.Close();
+            catch (DirectoryNotFoundException dn)
+            {
+                Console.WriteLine("No encuentra el directorio Error: " + dn.Message);
+            }catch(Exception ex) 
+            {
+                Console.WriteLine("Error: "+ex.Message);
+            }
             return parametros;
         }
     }
