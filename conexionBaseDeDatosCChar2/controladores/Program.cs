@@ -1,4 +1,5 @@
 ﻿using conexionBaseDeDatosCChar2.Modelo;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace conexionBaseDeDatosCChar2
         static void Main(string[] args)
         {
             interfazConexionBaseDeDatos inter = new implementacionBaseDeDatos();
-            inter.ConexionBaseDatos();
+            NpgsqlConnection conn=inter.AbrirConexionBaseDatos();
+            inter.ConsultaDatos("SELECT *  FROM gbp_almacen.gbp_alm_cat_libros", conn);
+            inter.CerrarBaseDeDatos(conn);
             Console.ReadLine();
         }
     }
