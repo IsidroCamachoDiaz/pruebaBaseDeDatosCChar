@@ -93,7 +93,7 @@
   <ItemGroup>
     <Compile Include="Modelo\implementacionBaseDeDatos.cs" />
     <Compile Include="Modelo\interfazConexionBaseDeDatos.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Vista\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="controladores\" />
-    <Folder Include="Vista\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
