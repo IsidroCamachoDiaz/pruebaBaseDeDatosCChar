@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Microsoft.Win32.SafeHandles;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,10 +26,12 @@ namespace conexionBaseDeDatosCChar2.Modelo
                  conn = new NpgsqlConnection(datos);
 
                 conn.Open(); // apertura de conección
+                
    
             }catch (Exception ex)
             {
                 Console.WriteLine("Error: "+ex.Message);
+                conn=null;
             }
             return conn;
         }
@@ -41,10 +44,10 @@ namespace conexionBaseDeDatosCChar2.Modelo
                 // creas tu query y le envías la conexión con la que va a trabajar y filtras la condición que necesitas 
                 NpgsqlCommand command = new NpgsqlCommand(query, conn);
                 NpgsqlDataReader dr = command.ExecuteReader();
-
+            
                 // Si devulve datos los recorre y te los muestra por la consola)
                 while (dr.Read())
-                    Console.Write("{0}\t{1}\t{2}\t{3}\t{4}\n", dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                    Console.Write("{0}\t{1}\t{2}\t{3}\t{4}\n", dr[0], dr[1], dr[2], dr[3], dr[4]);
             }catch(Exception ex) 
             {
                 Console.WriteLine("Error: "+ex.Message);

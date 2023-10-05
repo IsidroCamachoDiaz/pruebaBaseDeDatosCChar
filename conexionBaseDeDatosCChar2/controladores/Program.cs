@@ -14,9 +14,14 @@ namespace conexionBaseDeDatosCChar2
         {
             interfazConexionBaseDeDatos inter = new implementacionBaseDeDatos();
             NpgsqlConnection conn=inter.AbrirConexionBaseDatos();
-            inter.ConsultaDatos("SELECT *  FROM gbp_almacen.gbp_alm_cat_libros", conn);
-            inter.CerrarBaseDeDatos(conn);
-            Console.ReadLine();
+            if (conn != null)
+            {
+                inter.ConsultaDatos("SELECT *  FROM gbp_almacen.gbp_alm_cat_libros", conn);
+                inter.CerrarBaseDeDatos(conn);
+                Console.ReadLine();
+            }
+            else
+                Console.WriteLine("Hubo un problema en la conexion de datos");
         }
     }
 }
